@@ -33,10 +33,10 @@ export default function Register(){
   <input type="tel" className="tabular-nums" required placeholder="Phone" pattern="[0-9]*" minlength="10" maxlength="10" title="Must be 10 digits" />
 </label>
 <p className="validator-hint">Must be 10 digits</p>
-<button className="btn bg-white text-black border-[#e5e5e5] mt-5 btn btn-primary w-full mt-5">
+<Link to='/Dashboard'><button className="btn bg-white text-black border-[#e5e5e5] mt-5 btn btn-primary w-full mt-5">
             <svg aria-label="Email icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="black"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></g></svg>
             Login with Email
-          </button>
+          </button></Link>
           <div>
             <h1>Already Registered?<Link to="/"><button className="link link-hover">Login Here</button></Link></h1>
           </div>

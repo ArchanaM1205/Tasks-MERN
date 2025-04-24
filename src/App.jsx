@@ -5,6 +5,7 @@ import './App.css'
 import Loginpage from './components/loginpage'
 import Register from './components/register'
 import Dashboard from './Components/Dashboard'
+import Navbar from './Components/Navbar'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Route path='/Dashboard' element={<Dashboard/>}></Route>
     </Routes>
     </BrowserRouter>
+
    </>
   )
 }
