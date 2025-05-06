@@ -83,6 +83,9 @@ export default function Dashboard() {
     <div className="card-actions">
       <button className="btn btn-primary">Buy Now</button>
     </div>
+    <div className="card-actions">
+      <button className="btn btn-primary">Add to cart</button>
+    </div>
   </div>
   </div>
 

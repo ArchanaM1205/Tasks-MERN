@@ -7,6 +7,8 @@ import Register from './components/register'
 import Dashboard from './Components/Dashboard'
 import Navbar from './Components/Navbar'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Productpage from './Components/Productpage'
+import CartPage from './Components/CartPage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +20,8 @@ function App() {
       <Route path='/' element={<Loginpage/>}/>
       <Route path='/Register' element={<Register/>}></Route>
       <Route path='/Dashboard' element={<Dashboard/>}></Route>
+      <Route path='/Productpage' element={<Productpage/>}></Route>
+      <Route path='/CartPage' element={<CartPage/>}></Route>
     </Routes>
     </BrowserRouter>
 
