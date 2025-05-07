@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const CartContext = createContext();
 
@@ -6,35 +6,47 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [cartCount, setCartCount] = useState(0);
 
-  // Add or update item in the cart
+  // Keep cartCount in sync with cart
+  useEffect(() => {
+    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+    setCartCount(totalQuantity);
+  }, [cart]);
+
   const addToCart = (product) => {
     setCart((prevCart) => {
-      const productIndex = prevCart.findIndex((item) => item.id === product.id);
-
-      if (productIndex >= 0) {
+      const existingItemIndex = prevCart.findIndex((item) => item.id === product.id);
+      if (existingItemIndex !== -1) {
         const updatedCart = [...prevCart];
-        updatedCart[productIndex].quantity += 1; // Update quantity
-        setCartCount(updatedCart.length);
+        updatedCart[existingItemIndex] = {
+          ...updatedCart[existingItemIndex],
+          quantity: updatedCart[existingItemIndex].quantity + 1,
+        };
         return updatedCart;
       } else {
-        const updatedCart = [...prevCart, { ...product, quantity: 1 }];
-        setCartCount(updatedCart.length); // Update cart count after adding product
-        return updatedCart;
+        return [...prevCart, { ...product, quantity: 1 }];
       }
     });
   };
 
-  // Remove item from cart
   const removeFromCart = (id) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  };
+
+  const decreaseQuantity = (productId) => {
     setCart((prevCart) => {
-      const updatedCart = prevCart.filter((item) => item.id !== id);
-      setCartCount(updatedCart.length); // Update cart count after removal
+      const updatedCart = prevCart.map((item) => {
+        if (item.id === productId) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      }).filter(item => item.quantity > 0); // Remove item if quantity becomes 0
+
       return updatedCart;
     });
   };
 
   return (
-    <CartContext.Provider value={{ cart, cartCount, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, cartCount, addToCart, removeFromCart, decreaseQuantity }}>
       {children}
     </CartContext.Provider>
   );

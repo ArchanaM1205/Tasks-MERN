@@ -32,7 +32,7 @@ export default function ProductPage() {
                 <p className="font-bold text-lg">${product.price}</p>
                 <div className="card-actions justify-center">
                   <button className="btn btn-primary">Buy Now</button>
-                  <button className="btn btn-outline" onClick={addToCart}>Add to Cart</button>
+                  <button className="btn btn-outline" onClick={() => addToCart(product)}>Add to Cart</button>
                 </div>
               </div>
             </div>
